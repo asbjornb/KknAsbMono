@@ -68,11 +68,13 @@ leveldata.buildings = {
 }
 
 $(document).ready(function(){
+    updateVisuals()
     $('#buyBloodhound').click(function(){
         var cost=leveldata.buildings.bloodhoundBaseCost*Math.pow(1.05,player.buildings.bloodhound);
         if(cost<=player.resources.deer){
             player.buildings.bloodhound++;
             player.resources.deer -= cost;
+            updateVisuals(); //Should this call this function or just manually set the 3 deer visuals since we know they are affected?
         }
     })
 
@@ -84,7 +86,12 @@ $(document).ready(function(){
 function update(){
     console.log('update');
     player.resources.deer += player.buildings.bloodhound;
+    updateVisuals();
+}
+
+function updateVisuals(){
     $('#deer').text(Math.round(player.resources.deer));
     $('#bloodhounds').text(Math.round(player.buildings.bloodhound));
     $('#price').text(Math.round(leveldata.buildings.bloodhoundBaseCost*Math.pow(1.05,player.buildings.bloodhound)));
+            
 }
