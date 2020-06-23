@@ -85,4 +85,6 @@ function update(){
     console.log('update');
     player.resources.deer += player.buildings.bloodhound;
     $('#deer').text(Math.round(player.resources.deer));
+    $('#bloodhounds').text(Math.round(player.buildings.bloodhound));
+    $('#price').text(Math.round(leveldata.buildings.bloodhoundBaseCost*Math.pow(1.05,player.buildings.bloodhound)));
 }
