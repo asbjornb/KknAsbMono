@@ -69,9 +69,11 @@ leveldata.buildings = {
 
 $(document).ready(function(){
     $('#buyBloodhound').click(function(){
-        //todo check first if currency is available
-        player.buildings.bloodhound++;
-        player.resources.deer -= leveldata.buildings.bloodhoundBaseCost*Math.pow(1.05,player.buildings.bloodhound);
+        var cost=leveldata.buildings.bloodhoundBaseCost*Math.pow(1.05,player.buildings.bloodhound);
+        if(cost<=player.resources.deer){
+            player.buildings.bloodhound++;
+            player.resources.deer -= cost;
+        }
     })
 
     window.setInterval(function(){
@@ -82,5 +84,5 @@ $(document).ready(function(){
 function update(){
     console.log('update');
     player.resources.deer += player.buildings.bloodhound;
-    $('#deer').text(player.resources.deer);
+    $('#deer').text(Math.round(player.resources.deer));
 }
