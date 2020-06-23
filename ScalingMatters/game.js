@@ -81,6 +81,6 @@ $(document).ready(function(){
 
 function update(){
     console.log('update');
-    player.deer += player.buildings.bloodhound;
+    player.resources.deer += player.buildings.bloodhound;
     $('#deer').text(player.resources.deer);
 }
