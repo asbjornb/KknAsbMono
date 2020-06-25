@@ -4,17 +4,10 @@ var leveldata = {};
 
 //todo load save on open
 game.baseInterval = 1000; //1000 miliseconds between updates initially?
-
-// player.level = "hamlet"; //Starting at hamlet. This and the following should be generalized using level data
-// player.resources = {
-//     deer : 10,
-// 	income : 0
-// };
-// player.buildings = [0, 0];
-// leveldata.buildings = {
-//     baseCost : [10, 50],
-// 	income : [1, 2]
-// }
+leveldata.buildings = {
+    baseCost : [10, 50],
+    income : [1, 2]
+}
 
 $(document).ready(function(){
     initializePlayer();
@@ -52,6 +45,10 @@ $(document).ready(function(){
         erase()
         $('#debug').text('Erased');
     })
+    $('#prestige').click(function(){
+        prestige()
+        //$('#debug').text('Prestiged');
+    })
 
     window.setInterval(function(){
         update();
@@ -61,7 +58,7 @@ $(document).ready(function(){
 function update(){
     console.log('update');
 	for (i=0; i< leveldata.buildings.income.length; i++) {
-		player.resources.deer += player.buildings[i] * leveldata.buildings.income[i];
+		player.resources.deer += player.buildings[i] * leveldata.buildings.income[i] * player.prestigeMultiplier;
 	}
     updateVisuals();
 }
@@ -100,8 +97,15 @@ function initializePlayer(){
 	    income : 0
     };
     player.buildings = [0, 0];
-    leveldata.buildings = {
-        baseCost : [10, 50],
-    	income : [1, 2]
-    }
+    player.prestigeMultiplier = 1;
+    player.time=Date.now();
+}
+
+function prestige(){
+    //just to have something for now.
+    multiplier = player.prestigeMultiplier * Math.log10(player.resources.deer);
+    $('#debug').text(multiplier);
+    initializePlayer();
+    player.prestigeMultiplier = multiplier;
+    updateVisuals();
 }
