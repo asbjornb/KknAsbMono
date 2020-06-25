@@ -11,8 +11,8 @@
 <body>
     <h1>Scaling matters</h1>
     <script src="game.js"></script>
-	<div><span><h2>Income: <span id="income"></span>, Deer: <span id="deer"></span></h2></div></span>
-    <table style="width:100%">
+	<span><h2>Income: <span id="income"></span>, Deer: <span id="deer"></span></h2></span>
+    <table style="width:100%" class="buildingsTable">
         <tr>
           <th>Buy</th>
           <th>Income</th>
@@ -20,19 +20,24 @@
           <th>Owned</th>
         </tr>
         <tr>
-          <td><div><input type="button" id="buyT1" value="T1"></div></td>
+          <td><input type="button" id="buyT1" value="T1"></td>
           <td><span id="incomeT1"></span></td>
           <td><span id="priceT1"></span></td>
           <td><span id="t1"></span></td>
         </tr>
         <tr>
-          <td><div><input type="button" id="buyT2" value="T2"></div></td>
+          <td><input type="button" id="buyT2" value="T2"></td>
           <td><span id="incomeT2"></span></td>
           <td><span id="priceT2"></span></td>
           <td><span id="t2"></span></td>
         </tr>
-      </table>
-      <div><input type="button" id="save" value="Save"></div><div><input type="button" id="load" value="Load"></div><div><input type="button" id="erase" value="Erase"></div>
+    </table>
+    <br>
+    <div class="saveControls">
+        <input type="button" id="save" value="Save">
+        <input type="button" id="load" value="Load">
+        <input type="button" id="erase" value="Erase">
+    </div>
 	 <h2>Debug: <span id="debug"></span></h2>
     
 </body>
