@@ -64,8 +64,14 @@ function update(){
 }
 
 function updateVisuals(){
+    if (player.prestigeMultiplier>1) {
+        document.getElementById("prestigeMult").style.display = "inline-block"
+    } else {
+        document.getElementById("prestigeMult").style.display = "none"
+    }
     $('#deer').text(Math.round(player.resources.deer));
-	$('#income').text(player.resources.income);
+    $('#income').text(player.resources.income);
+    $('#prestigeMult').text(", Prestige: " + player.prestigeMultiplier);
     $('#t1').text(Math.round(player.buildings[0]));
 	$('#t2').text(Math.round(player.buildings[1]));
     $('#priceT1').text(Math.round(leveldata.buildings.baseCost[0]*Math.pow(1.05,player.buildings[0])));
@@ -103,8 +109,8 @@ function initializePlayer(){
 
 function prestige(){
     //just to have something for now.
-    multiplier = player.prestigeMultiplier * Math.log10(player.resources.deer);
-    $('#debug').text(multiplier);
+    multiplier = Math.log10(player.resources.deer);
+    $('#debug').text("Prestiged for" + multiplier);
     initializePlayer();
     player.prestigeMultiplier = multiplier;
     updateVisuals();
